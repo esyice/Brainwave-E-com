@@ -13,10 +13,22 @@ function Product() {
             }
             return res.json();
           })
-          .then((res) => setData(res))
+          .then((res) => setData(res.map((product) => ({...product , count: 0}))))
           .catch((error) => console.error('Error fetching data:', error));
       }, []);
-    
+
+
+      const handleIncrease = (id) =>{
+        const updateCount = data.map((product) => product.id === id ? {...product , count: product.count + 1} : product)  
+        setData(updateCount)
+
+      }
+
+      const handleDecrease = (id) =>{
+        const updateCount = data.map((product) => product.id === id && product.count > 0 ? {...product , count : product.count - 1} : product)
+        setData(updateCount)
+        
+      }
 
       const getLimitedTitle = (title) => {
         const words = title.split(' ');
@@ -49,32 +61,32 @@ function Product() {
                     </div>
                     <div className="flex items-center">
                       <div className="text-lg text-white font-light">₹ {products.price}</div>
-                      {products.count === 0 ? (
-                          <button
-                            onClick={() => handleIncrease(index)}
-                            className="rounded bg-blue-600 text-white px-4 py-2 hover:bg-blue-800 transition duration-300 flex ml-auto"
-                          >
-                            Add
-                          </button>
-                        ) : (
-                          <>
-                            <button
-                              onClick={() => handleDecrease(index)}
-                              className="ml-auto rounded-full bg-red-600 text-white hover:bg-red-800 w-8 h-8 flex justify-center items-center transition duration-300"
-                            >
-                              -
-                            </button>
-                            <div className="text-lg text-white font-light mx-4">
-                              {products.count}
-                            </div>
-                            <button
-                              onClick={() => handleIncrease(index)}
-                              className="rounded-full bg-green-600 text-white hover:bg-green-800 w-8 h-8 flex justify-center items-center transition duration-300"
-                            >
-                              +
-                            </button>
-                          </>
-                      )}
+                    {products.count === 0 ? (
+                    <button
+                      onClick={() => handleIncrease(products.id)}
+                      className="ml-auto rounded bg-blue-600 text-white px-4 py-2 hover:bg-blue-800 transition duration-300"
+                    >
+                      Add
+                    </button>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => handleDecrease(products.id)}
+                        className="ml-auto rounded-full bg-red-600 text-white hover:bg-red-800 w-8 h-8 flex justify-center items-center transition duration-300"
+                      >
+                        -
+                      </button>
+                      <div className="text-lg text-white font-light mx-4">
+                        {products.count}
+                      </div>
+                      <button
+                        onClick={() => handleIncrease(products.id)}
+                        className="rounded-full bg-green-600 text-white hover:bg-green-800 w-8 h-8 flex justify-center items-center transition duration-300"
+                      >
+                        +
+                      </button>
+                    </>
+                  )}
                     </div>
                   </div>
                 </div>
@@ -92,29 +104,3 @@ export default Product
 
 
 
-//   return (
-
-//     <>
-//         {data.map((product) =>(
-//             <div className='bg-slate-400' key={product.id}>
-//                 <div >
-//                     <img className='' src={product.image} alt="Product Image"/>
- 
-//                 </div>
-//                 <div className="p-4">
-//                     <h3 className="text-lg font-medium mb-2">{product.title}</h3>
-//                     <p className="text-gray-600 text-sm mb-4">{product.description}.</p>
-//                     <div className="flex items-center justify-between">
-//                         <span className="font-bold text-lg">${product.price}</span>
-//                         <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-//                             Buy Now
-//                         </button>
-//                     </div>
-//                 </div>
-//             </div>            
-//         ))}
-//     </>
-
-
-
-//   )
