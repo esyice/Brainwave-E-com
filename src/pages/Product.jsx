@@ -32,7 +32,7 @@ function Product() {
 
       const getLimitedTitle = (title) => {
         const words = title.split(' ');
-        return words.slice(0, 4).join(' ') + (words.length > 4 ? '...' : '');
+        return words.slice(0, 4).join(' ') + (words.length > 4 ? '...' : '')
       }
 
 
@@ -44,7 +44,7 @@ function Product() {
 
     
             {data.map ((products)=>(
-              <div key={products.id} className="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2 ">
+              <div key={products.id} className="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2 mt-4">
                   <div className="bg-white rounded-lg m-h-64 p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300">
                     <figure className="mb-2">
                         <img
@@ -60,7 +60,7 @@ function Product() {
                       </h5>
                     </div>
                     <div className="flex items-center">
-                      <div className="text-lg text-white font-light">₹ {products.price}</div>
+                      <div className="text-lg text-white font-light">$ {products.price}</div>
                     {products.count === 0 ? (
                     <button
                       onClick={() => handleIncrease(products.id)}

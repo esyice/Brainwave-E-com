@@ -17,7 +17,7 @@ function Navbar() {
           <Link to='/About'><li className='border p-2 hover:bg-white hover:text-slate-800 text-xs'>About </li></Link>
           <Link to='/Product'><li className='border p-2 hover:bg-white hover:text-slate-800 text-xs'>Product</li></Link>
           <Link to='/Login'><li className='border p-2 rounded-e-3xl hover:bg-white hover:text-slate-800 text-xs'>Login</li></Link>
-          <Link to='/Cart'><li className='border p-2 rounded-full ml-4 hover:bg-white hover:text-slate-800 text-xl flex'><TiShoppingCart/></li></Link>
+          <Link to='/Cart'><li className='rounded-md border p-2  ml-4 hover:bg-white hover:text-slate-800 text-xl flex'><TiShoppingCart/><p className='-mt-1 ml-1'>0</p></li></Link>
             
           
         </ul>
