@@ -1,32 +1,45 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import CartContext from '../context/CartContext'
 
 function Product() {
 
     const [data ,setData] = useState([])
+    const [cartCount , setCartCount ] = useState(0)
+
+    const {setTotalCount} = useContext(CartContext)
+
 
 
     useEffect(() => {
         fetch('https://fakestoreapi.com/products')
           .then((res) => {
             if (!res.ok) {
-              throw new Error('API failed');
+              throw new Error('API failed')
             }
             return res.json();
           })
           .then((res) => setData(res.map((product) => ({...product , count: 0}))))
-          .catch((error) => console.error('Error fetching data:', error));
-      }, []);
+          .catch((error) => console.error('Error fetching data:', error))
+      }, [])
 
+    useEffect(()=>{
+      setTotalCount(cartCount)
+    },[cartCount])
 
       const handleIncrease = (id) =>{
         const updateCount = data.map((product) => product.id === id ? {...product , count: product.count + 1} : product)  
         setData(updateCount)
+        setCartCount(cartCount + 1)
 
+        
       }
 
       const handleDecrease = (id) =>{
         const updateCount = data.map((product) => product.id === id && product.count > 0 ? {...product , count : product.count - 1} : product)
         setData(updateCount)
+        setCartCount(cartCount - 1)
+
+
         
       }
 
@@ -34,6 +47,7 @@ function Product() {
         const words = title.split(' ');
         return words.slice(0, 4).join(' ') + (words.length > 4 ? '...' : '')
       }
+
 
 
       return (

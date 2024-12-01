@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import ValueContext from './CartContext'
+import CartContext from './CartContext'
 
 const CartContextProvider = ({children}) => {
-    const [totalCount , setTotalCount] = useState ()
+    const [totalCount , setTotalCount] = useState (0)
     return(
-        <ValueContext.Provider value={{totalCount , setTotalCount}}>
+        <CartContext.Provider value={{totalCount , setTotalCount}}>
             {children}
-        </ValueContext.Provider >
+        </CartContext.Provider >
 
 
     )
