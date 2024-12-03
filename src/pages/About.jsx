@@ -84,6 +84,7 @@ function About() {
       <section>
         <h2 className="text-3xl font-semibold mt-4">API Integration</h2>
         <p>The project fetches product data from <strong>Fake Store API</strong> (<code>https://fakestoreapi.com/products</code>) using the <strong>fetch</strong> API within a <code>useEffect</code> hook in <code>CartContextProvider</code>.</p>
+        <p>The User data from <strong>Fake Store API</strong> (<code>https://fakestoreapi.com/users?limit=5</code>) using the <strong>fetch</strong> API within a <code>useEffect</code> hook in <code>CartContextProvider</code>.</p>
       </section>
 
       <section>
@@ -131,7 +132,7 @@ function About() {
       <section>
         <h2 className="text-3xl font-semibold mt-4">Contact</h2>
         <p>
-          For any questions or feedback, you can contact the project creator at <a href="mailto:your.email@example.com" className="text-blue-300 underline">your.email@example.com</a> or visit the <a href="https://github.com/yourusername/your-project-name" className="text-blue-300 underline">project repository</a>.
+          For any questions or feedback, you can contact the project creator at <a href="egzice@gmail.com" className="text-blue-300 underline">egzice@gmail.com</a> or visit the <a href="https://github.com/esyice/E-com" className="text-blue-300 underline">project repository</a>.
         </p>
       </section>
     </div>
