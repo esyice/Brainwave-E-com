@@ -3,7 +3,6 @@ import CartContext from './CartContext'
 
 const CartContextProvider = ({children}) => {
     const [totalCount , setTotalCount] = useState (0)
-
     const [data ,setData] = useState([])
 
 
@@ -23,8 +22,30 @@ const CartContextProvider = ({children}) => {
       }, [])
 
 
+      const handleIncrease = (id) =>{
+        const updateCount = data.map((product) => product.id === id ? {...product , count: product.count + 1} : product)  
+        setData(updateCount)
+        setTotalCount(totalCount + 1)
+
+      }
+
+      const handleDecrease = (id) =>{
+        const updateCount = data.map((product) => product.id === id && product.count > 0 ? {...product , count : product.count - 1} : product)
+        setData(updateCount)
+        setTotalCount(totalCount - 1)
+
+      }
+
+      const getLimitedTitle = (title) => {
+        const words = title.split(' ');
+        return words.slice(0, 4).join(' ') + (words.length > 4 ? '...' : '')
+      }
+
+
+
+
     return(
-        <CartContext.Provider value={{totalCount , setTotalCount , data , setData}}>
+        <CartContext.Provider value={{totalCount , setTotalCount , data , setData , getLimitedTitle , handleIncrease , handleDecrease }}>
             {children}
         </CartContext.Provider >
 

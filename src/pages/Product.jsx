@@ -3,63 +3,18 @@ import CartContext from '../context/CartContext'
 
 function Product() {
 
-    // const [data ,setData] = useState([])
-
-    const {setTotalCount} = useContext(CartContext)
-    const {totalCount}  = useContext(CartContext)
-    const {data}  = useContext(CartContext)
-    const {setData}  = useContext(CartContext)
+    const { data , getLimitedTitle , handleIncrease , handleDecrease}  = useContext(CartContext)
 
 
 
 
-    // useEffect(() => {
-    //     fetch('https://fakestoreapi.com/products')
-    //       .then((res) => {
-    //         if (!res.ok) {
-    //           throw new Error('API failed')
-    //         }
-    //         return res.json();
-    //       })
-    //       .then((res) => setData(res.map((product) => ({...product , count: 0}))))
-    //       .catch((error) => console.error('Error fetching data:', error))
-    //   }, [])
 
-
-
-      const handleIncrease = (id) =>{
-        const updateCount = data.map((product) => product.id === id ? {...product , count: product.count + 1} : product)  
-        setData(updateCount)
-        setTotalCount(totalCount + 1)
-
-
-        
-      }
-
-      const handleDecrease = (id) =>{
-        const updateCount = data.map((product) => product.id === id && product.count > 0 ? {...product , count : product.count - 1} : product)
-        setData(updateCount)
-        setTotalCount(totalCount - 1)
-
-
-
-        
-      }
-
-      const getLimitedTitle = (title) => {
-        const words = title.split(' ');
-        return words.slice(0, 4).join(' ') + (words.length > 4 ? '...' : '')
-      }
 
 
 
       return (
-        <div
-          className="flex items-center bg-indigo-100 w-screen min-h-screen">
+        <div className="flex items-center bg-indigo-100 w-screen min-h-screen">
           <div className="container ml-auto mr-auto flex flex-wrap items-start">
-    
-
-    
             {data.map ((products)=>(
               <div key={products.id} className="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2 mt-4">
                   <div className="bg-white rounded-lg m-h-64 p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300">
