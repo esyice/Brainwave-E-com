@@ -104,7 +104,7 @@ function Cart() {
         </div>
       </div>
         ):(
-          <h1 className="text-white  text-2xl mt-4">Nathing to show </h1>
+          <h1 className="text-white  text-2xl mt-4">Nothing to show </h1>
         )}
       </div>
       
