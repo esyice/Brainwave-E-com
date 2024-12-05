@@ -22,6 +22,8 @@ const CartContextProvider = ({children}) => {
       }, [])
 
 
+
+
       const handleIncrease = (id) =>{
         const updateCount = data.map((product) => product.id === id ? {...product , count: product.count + 1} : product)  
         setData(updateCount)
@@ -45,7 +47,7 @@ const CartContextProvider = ({children}) => {
 
 
     return(
-        <CartContext.Provider value={{totalCount , setTotalCount , data , setData , getLimitedTitle , handleIncrease , handleDecrease }}>
+        <CartContext.Provider value={{totalCount , setTotalCount , data , setData , getLimitedTitle , handleIncrease , handleDecrease  }}>
             {children}
         </CartContext.Provider >
 
