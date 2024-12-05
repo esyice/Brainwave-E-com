@@ -63,7 +63,7 @@ function About() {
         <ol className="list-decimal ml-8">
           <li>Clone the repository:</li>
           <pre className="bg-gray-800 p-4 rounded">
-            <code>git clone https://github.com/yourusername/your-project-name.git</code>
+            <code>git clone https://github.com/esyice/Brainwave-E-com.git</code>
           </pre>
           <li>Navigate to the project directory:</li>
           <pre className="bg-gray-800 p-4 rounded">
