@@ -110,9 +110,7 @@ function About() {
         <ul className="list-disc ml-8">
           <li>Implement user authentication and session management.</li>
           <li>Add a checkout page with payment processing integration.</li>
-          <li>Enhance the product search and filtering functionality.</li>
           <li>Improve accessibility for better user experience.</li>
-          <li>Introduce unit and integration tests using <strong>Jest</strong> and <strong>React Testing Library</strong>.</li>
         </ul>
       </section>
 
