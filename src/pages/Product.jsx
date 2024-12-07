@@ -23,7 +23,7 @@ function Product() {
 
 
       return (
-        <div className="flex items-center bg-indigo-100 w-screen min-h-screen">
+        <div className="flex items-center bg-indigo-100 w-screen">
           <div className="container ml-auto mr-auto flex flex-wrap items-start">
 
             <div className='flex w-full mb-4 p-4 justify-around '>
