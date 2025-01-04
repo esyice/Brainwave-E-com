@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import './App.css'
-import { BrowserRouter , Routes ,Route } from "react-router"
-import Navbar from './components/Navbar/Navbar'
-import CartContextProvider from './context/CartContextProvider'
-import Home from './pages/Home'
-import Product from './pages/Product'
-import About from './pages/About'
-import Login from './pages/Login'
-import Cart from './pages/Cart'
+import { useContext, useState } from "react";
+import "./App.css";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./pages/Home";
+import Product from "./pages/Product";
+import About from "./pages/About";
+import Login from "./pages/Login";
+import Cart from "./pages/Cart";
+import ProductPage from "./components/Product/ProductPage";
+import CartContext from "./context/CartContext";
+
 function App() {
+
+  const { productId } = useContext(CartContext)
+ 
 
   return (
     <>
-    <BrowserRouter>
-      <CartContextProvider>
-        <Navbar/>
-    
-        <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='/product' element={<Product/>} />
-          <Route path='/About' element={<About/>} />
-          <Route path='/Login' element={<Login/>} />
-          <Route path='/Cart' element={<Cart/>} />
-        </Routes>
-      </CartContextProvider>
+      <BrowserRouter>
+          <Navbar />
 
-    
-    </BrowserRouter>
-    
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product" element={<Product />} />
+            <Route path="/About" element={<About />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Cart" element={<Cart />} />
+
+            <Route
+              path="/productPage"
+              element={
+                productId ? (
+                  <ProductPage productId={productId} />
+                ) : (
+                  <Navigate to="/product" />
+                )
+              }
+            />
+          </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

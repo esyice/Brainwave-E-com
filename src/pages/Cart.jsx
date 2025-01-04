@@ -1,19 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from "react";
 
-import CartContext from '../context/CartContext'
-
-
+import CartContext from "../context/CartContext";
 
 function Cart() {
+  const { data, totalCount, getLimitedTitle, handleIncrease, handleDecrease } =
+    useContext(CartContext);
 
-  const {data , totalCount , getLimitedTitle , handleIncrease , handleDecrease  }  = useContext(CartContext)
-
-  const [value , setValue] = ('0')
+  const [value, setValue] = "0";
 
   const totalPrice = data.reduce(
     (total, product) => total + product.price * product.count,
     0
-  )
+  );
 
   return (
     <div className="font-[sans-serif] bg-[#5c5c5c]">
@@ -37,21 +35,30 @@ function Cart() {
                           />
                         </div>
                         <div className="w-full">
-                          <h3 className="text-base text-white">{getLimitedTitle(product.title)}</h3>
+                          <h3 className="text-base text-white">
+                            {getLimitedTitle(product.title)}
+                          </h3>
                           <ul className="text-xs text-gray-300 space-y-2 mt-2">
                             <li className="flex flex-wrap gap-4">
-                              Quantity <button onClick={() => handleDecrease(product.id)} className="ml-auto rounded-full bg-red-600 text-white hover:bg-red-800 w-8 h-8 flex justify-center items-center transition duration-300">
-                                         -
-                                        </button>
-                                          <div className="text-lg text-white font-light mx-4">
-                                            {product.count}
-                                          </div>
-                                        <button onClick={() => handleIncrease(product.id)} className="rounded-full bg-green-600 text-white hover:bg-green-800 w-8 h-8 flex justify-center items-center transition duration-300">
-                                          +
-                                        </button>
+                              Quantity{" "}
+                              <button
+                                onClick={() => handleDecrease(product.id)}
+                                className="ml-auto rounded-full bg-red-600 text-white hover:bg-red-800 w-8 h-8 flex justify-center items-center transition duration-300"
+                              >
+                                -
+                              </button>
+                              <div className="text-lg text-white font-light mx-4">
+                                {product.count}
+                              </div>
+                              <button
+                                onClick={() => handleIncrease(product.id)}
+                                className="rounded-full bg-green-600 text-white hover:bg-green-800 w-8 h-8 flex justify-center items-center transition duration-300"
+                              >
+                                +
+                              </button>
                             </li>
                             <li className="flex flex-wrap gap-4">
-                              Total Price{' '}
+                              Total Price{" "}
                               <span className="ml-auto">
                                 ${product.count * product.price}
                               </span>
@@ -62,54 +69,70 @@ function Cart() {
                     ) : null
                   )
                 ) : (
-                  <h3 className="text-white text-center">No products available</h3>
+                  <h3 className="text-white text-center">
+                    No products available
+                  </h3>
                 )}
               </div>
             </div>
           </div>
         </div>
-        { totalCount != 0 ?(
-
-      <div className='cart'>
-        <div className="max-w-3xl mx-auto p-6 bg-[#bebaba] rounded shadow-sm my-6" id="invoice">
-          <div className="-mx-4 mt-8 flow-root sm:mx-0">
-            <div className="flex flex-col divide-y divide-gray-200">
-              <div className="flex py-3 font-semibold text-gray-900">
-                <div className="flex-1">Items</div>
-                <div className="w-1/6 text-right">Quantity</div>
-                <div className="w-1/6 text-right mx-1">Price</div>
-                <div className="w-1/6 text-right mx-1">Amount</div>
-              </div>
-
-              {data.map((product , index) =>
-                product.count > 0 ? (
-                <div key={index} className="flex py-3">
-                  <div className="flex-1">
-                    <p className="font-medium text-gray-900">{product.title}</p>
+        {totalCount != 0 ? (
+          <div className="cart">
+            <div
+              className="max-w-3xl mx-auto p-6 bg-[#bebaba] rounded shadow-sm my-6"
+              id="invoice"
+            >
+              <div className="-mx-4 mt-8 flow-root sm:mx-0">
+                <div className="flex flex-col divide-y divide-gray-200">
+                  <div className="flex py-3 font-semibold text-gray-900">
+                    <div className="flex-1">Items</div>
+                    <div className="w-1/6 text-right">Quantity</div>
+                    <div className="w-1/6 text-right mx-1">Price</div>
+                    <div className="w-1/6 text-right mx-1">Amount</div>
                   </div>
-                  <div className="w-1/6 text-right text-sm text-gray-500">{product.count}</div>
-                  <div className="w-1/6 text-right text-sm text-gray-500">${product.price}</div>
-                  <div className="w-1/6 text-right text-sm text-gray-500">${product.price*product.count}</div>
-                </div>
-              ): null)}
 
-              <div className="flex pt-4">
-                <div className="flex-1"></div>
-                <div className="w-1/6 text-right text-sm font-bold text-gray-900">Total</div>
-                <div className="w-1/6 text-right text-sm text-gray-900"></div>
-                <div className="w-1/6 text-right text-sm font-bold text-gray-900">${totalPrice.toFixed(2)}</div>
-              </div> 
+                  {data.map((product, index) =>
+                    product.count > 0 ? (
+                      <div key={index} className="flex py-3">
+                        <div className="flex-1">
+                          <p className="font-medium text-gray-900">
+                            {product.title}
+                          </p>
+                        </div>
+                        <div className="w-1/6 text-right text-sm text-gray-500">
+                          {product.count}
+                        </div>
+                        <div className="w-1/6 text-right text-sm text-gray-500">
+                          ${product.price}
+                        </div>
+                        <div className="w-1/6 text-right text-sm text-gray-500">
+                          ${product.price * product.count}
+                        </div>
+                      </div>
+                    ) : null
+                  )}
+
+                  <div className="flex pt-4">
+                    <div className="flex-1"></div>
+                    <div className="w-1/6 text-right text-sm font-bold text-gray-900">
+                      Total
+                    </div>
+                    <div className="w-1/6 text-right text-sm text-gray-900"></div>
+                    <div className="w-1/6 text-right text-sm font-bold text-gray-900">
+                      ${totalPrice.toFixed(2)}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-        ):(
+        ) : (
           <h1 className="text-white  text-2xl mt-4">Nothing to show </h1>
         )}
       </div>
-      
     </div>
   );
 }
 
-export default Cart
+export default Cart;
